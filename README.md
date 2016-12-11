@@ -55,7 +55,7 @@ dev.copy(png, file = "plot1.png", width = 480, height = 480)
 dev.off()
 ```
 ##Plot 2
-<img src="https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot2.png/>
+<img src="https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot2.png"/>
 
 ##My Plot 2
 
