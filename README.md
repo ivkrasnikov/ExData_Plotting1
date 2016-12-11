@@ -44,102 +44,62 @@ dt$DT <- as.POSIXct(paste(dt$Date, dt$Time), format = "%Y-%m-%d %H:%M:%S", tz = 
 dt$Global_active_power <- as.numeric(dt$Global_active_power)
 ```
 ##Plot 1
-![alt text](https://raw.githubusercontent.com/rdpeng/ExData_Plotting1/master/figure/unnamed-chunk-2.png)
+![alt text](https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot1.png)
 
 ##My Plot 1
 
 ```r
-plot1 <- function() {
-        hist(df$Global_active_power, main = paste("Global Active Power"), col="red", xlab="Global Active Power (kilowatts)")
-        dev.copy(png, file="plot1.png", width=480, height=480)
-        dev.off()
-        cat("Plot1.png has been saved in", getwd())
-}
-plot1()
-```
-
-![plot of chunk unnamed-chunk-2](./Plotting_1_files/figure-html/unnamed-chunk-2.png) 
-
-```
-## Plot1.png has been saved in /Users/dmaurath/Documents/JHDS/datasciencecoursera/Exploratory Data Analysis Projects/Plotting 1
+boxplot(dt$Global_active_power, horizontal = TRUE, outline = FALSE)
+hist(dt$Global_active_power,xlab = "Global Active Power (kilowatts)", ylab = "Frequency", main = "Global Active Power", col = "red")
+dev.copy(png, file = "plot1.png", width = 480, height = 480)
+dev.off()
 ```
 ##Plot 2
-<img src="https://raw.githubusercontent.com/rdpeng/ExData_Plotting1/master/figure/unnamed-chunk-3.png"/>
+<img src="https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot2.png/>
 
 ##My Plot 2
 
 ```r
-plot1 <- function() {
-        plot(df$timestamp,df$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
-        dev.copy(png, file="plot2.png", width=480, height=480)
-        dev.off()
-        cat("plot2.png has been saved in", getwd())
-}
-plot1()
+plot(dt$DT,dt$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)")
+dev.copy(png, file = "plot2.png", width = 480, height = 480)
+dev.off()
 ```
 
-![plot of chunk unnamed-chunk-3](./Plotting_1_files/figure-html/unnamed-chunk-3.png) 
-
-```
-## plot2.png has been saved in /Users/dmaurath/Documents/JHDS/datasciencecoursera/Exploratory Data Analysis Projects/Plotting 1
-```
 ##Plot 3
-<img src="https://raw.githubusercontent.com/rdpeng/ExData_Plotting1/master/figure/unnamed-chunk-4.png"/>
+<img src="https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot3.png"/>
 
 ##My Plot 3
 
 ```r
-plot3 <- function() {
-        plot(df$timestamp,df$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
-        lines(df$timestamp,df$Sub_metering_2,col="red")
-        lines(df$timestamp,df$Sub_metering_3,col="blue")
-        legend("topright", col=c("black","red","blue"), c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),lty=c(1,1), lwd=c(1,1))
-        dev.copy(png, file="plot3.png", width=480, height=480)
-        dev.off()
-        cat("plot3.png has been saved in", getwd())
-}
-plot3()
-```
-
-![plot of chunk unnamed-chunk-4](./Plotting_1_files/figure-html/unnamed-chunk-4.png) 
-
-```
-## plot3.png has been saved in /Users/dmaurath/Documents/JHDS/datasciencecoursera/Exploratory Data Analysis Projects/Plotting 1
+plot(dt$DT,dt$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering")
+lines(dt$DT, dt$Sub_metering_2, col = "red")
+lines(dt$DT, dt$Sub_metering_3, col = "blue")
+legend("topright", col = c("black","red","blue"), c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),lty = c(1,1), lwd = c(1,1))
+dev.copy(png, file = "plot3.png", width = 480, height = 480)
+dev.off()
 ```
 
 ##Plot 4
-<img src="https://raw.githubusercontent.com/rdpeng/ExData_Plotting1/master/figure/unnamed-chunk-5.png"/>
+<img src="https://github.com/ivkrasnikov/ExData_Plotting1/blob/master/plot4.png"/>
 
 ##My Plot 4
 
 ```r
-plot4 <- function() {
-        par(mfrow=c(2,2))
-        
-        ##PLOT 1
-        plot(df$timestamp,df$Global_active_power, type="l", xlab="", ylab="Global Active Power")
-        ##PLOT 2
-        plot(df$timestamp,df$Voltage, type="l", xlab="datetime", ylab="Voltage")
-        
-        ##PLOT 3
-        plot(df$timestamp,df$Sub_metering_1, type="l", xlab="", ylab="Energy sub metering")
-        lines(df$timestamp,df$Sub_metering_2,col="red")
-        lines(df$timestamp,df$Sub_metering_3,col="blue")
-        legend("topright", col=c("black","red","blue"), c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),lty=c(1,1), bty="n", cex=.5) #bty removes the box, cex shrinks the text, spacing added after labels so it renders correctly
-        
-        #PLOT 4
-        plot(df$timestamp,df$Global_reactive_power, type="l", xlab="datetime", ylab="Global_reactive_power")
-        
-        #OUTPUT
-        dev.copy(png, file="plot4.png", width=480, height=480)
-        dev.off()
-        cat("plot4.png has been saved in", getwd())
-}
-plot4()
-```
+par(mfrow = c(2,2))
+## Subplot 1
+plot(dt$DT, dt$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power")
+## Subplot 2
+plot(dt$DT, dt$Voltage, type = "l", xlab = "datetime", ylab = "Voltage")
 
-![plot of chunk unnamed-chunk-5](./Plotting_1_files/figure-html/unnamed-chunk-5.png) 
+## Subplot 3
+plot(dt$DT, dt$Sub_metering_1, type = "l", xlab = "", ylab = "Energy sub metering")
+lines(dt$DT, dt$Sub_metering_2, col = "red")
+lines(dt$DT, dt$Sub_metering_3, col = "blue")
+legend("topright", col = c("black","red","blue"), c("Sub_metering_1  ","Sub_metering_2  ", "Sub_metering_3  "),lty = c(1,1), bty = "n", cex = .5) 
 
-```
-## plot4.png has been saved in /Users/dmaurath/Documents/JHDS/datasciencecoursera/Exploratory Data Analysis Projects/Plotting 1
+# Subplot 4
+plot(dt$DT,dt$Global_reactive_power, type = "l", xlab = "datetime", ylab = "Global_reactive_power")
+
+dev.copy(png, file = "plot4.png", width = 480, height = 480)
+dev.off()
 ```
